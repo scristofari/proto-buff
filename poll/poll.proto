@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/Empty.proto";
+
+package poll;
+
+message Poll {
+  string title = 1;
+  int64 id = 2;
+  google.protobuf.Timestamp last_modified = 3;
+}
+
+message PollRequest {
+  int64 id = 4;
+}
+
+message TickerResponse {
+  string tick = 6;
+}
+
+service PollServer {
+  rpc Get(PollRequest) returns (Poll) {}
+  rpc Ticker(google.protobuf.Empty) returns (stream TickerResponse) {}
+}
