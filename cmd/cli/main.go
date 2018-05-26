@@ -18,6 +18,8 @@ func main() {
 		fmt.Fprintf(os.Stderr, "could not connect to backend: %v\n", err)
 		os.Exit(1)
 	}
+	defer conn.Close()
+
 	client := poll.NewPollServerClient(conn)
 
 	p, _ := client.Get(context.Background(), &poll.PollRequest{Id: 1})
