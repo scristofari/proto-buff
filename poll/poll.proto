@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
 import "google/protobuf/Empty.proto";
 
 package poll;
@@ -20,6 +21,14 @@ message TickerResponse {
 }
 
 service PollServer {
-  rpc Get(PollRequest) returns (Poll) {}
-  rpc Ticker(google.protobuf.Empty) returns (stream TickerResponse) {}
+  rpc Get(PollRequest) returns (Poll) {
+    option (google.api.http) = {
+      get: "/v1/poll/test"
+    };
+  }
+  rpc Ticker(google.protobuf.Empty) returns (stream TickerResponse) {
+    option (google.api.http) = {
+      get: "/v1/ticker"
+    };
+  }
 }
