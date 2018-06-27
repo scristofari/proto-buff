@@ -71,6 +71,10 @@
         "last_modified": {
           "type": "string",
           "format": "date-time"
+        },
+        "published": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },

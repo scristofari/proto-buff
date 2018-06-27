@@ -9,6 +9,7 @@ import (
 
 	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/golang/protobuf/ptypes/timestamp"
+	"github.com/golang/protobuf/ptypes/wrappers"
 	"github.com/scristofari/proto/poll"
 	"google.golang.org/grpc"
 )
@@ -22,6 +23,7 @@ func (ps *pollServer) Get(context.Context, *poll.PollRequest) (*poll.Poll, error
 		Id:           1,
 		Title:        "test",
 		LastModified: i,
+		Published:    &wrappers.BoolValue{Value: false},
 	}
 	return p, nil
 }
